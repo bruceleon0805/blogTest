@@ -14,3 +14,22 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+/**
+ * 邮箱验证回调地址
+ */
+Route::get('email/verify/{token}',['as'=>'email.verify','uses'=>'EmailController@verify']);
+
+
