@@ -17,6 +17,8 @@ class EmailController extends Controller
         $user = User::where('confirmation_token',$token)->first();  //验证带回的token 值是否和数据库中的一样
         if (is_null($user)){
             // TODO 增添提示
+            flash(trans('verify fail'),'danger');
+
             return redirect('/');  //跳转
         }
 
@@ -24,6 +26,7 @@ class EmailController extends Controller
         $user->confirmation_token = str_random(40);
         $user->save();
         Auth::login($user); //登陆操作
+        flash(trans('verify success'),'success');
         return redirect('/home'); //跳转
     }
 

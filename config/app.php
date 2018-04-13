@@ -164,7 +164,10 @@ return [
          * email
          */
         Naux\Mail\SendCloudServiceProvider::class,
-
+        /**
+         * 语言本地化
+         */
+        Laracasts\Flash\FlashServiceProvider::class,
 
     ],
 
