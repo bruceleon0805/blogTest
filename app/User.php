@@ -2,11 +2,16 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Model;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Naux\Mail\SendCloudTemplate;
 use Mail;
 
+/**
+ * Class User
+ * @package App
+ */
 class User extends Authenticatable
 {
     use Notifiable;
@@ -29,6 +34,9 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
+    /**
+     * @param string $token
+     */
     public function sendPasswordResetNotification($token)
     {
         // 模板变量
@@ -42,7 +50,15 @@ class User extends Authenticatable
 
             $message->to($this->email);
         });
+    }
 
 
+    /**
+     * @param Model $model
+     * @return bool
+     */
+    public function owns(Model $model)
+    {
+        return $this->id == $model->user_id;
     }
 }

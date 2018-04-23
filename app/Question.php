@@ -9,7 +9,7 @@ class Question extends Model
     /**
      * 多对多关系
      */
-    public function topic()
+    public function topics()
     {
         $this->belongsToMany(Topic::class)->withTimestamps();
     }
